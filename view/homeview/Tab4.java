@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import csms.manager.PopupManager;
-import csms.manager.TableManager;
 import csms.service.CompanyService;
 import csms.service.DealingCService;
 import csms.util.RoundedButton;
