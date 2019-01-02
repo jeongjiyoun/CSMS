@@ -11,14 +11,14 @@ import csms.vo.Inquiry;
 public class InquiryDAO {
 
 	/*
-	 INQUIRY DAO
+	 INQUIRY DAO 
 	 테이블 : INQUIRY
 	 순서 : Select - Insert - Update - Delete
-	 주석 표기방법
-	 -MAPPER에서의 ID가 메소드명과 동일하지 않은 경우만 표기한다.
-	 -사용하는 SIUD 명칭을 가장 앞에 위치.
-	 -기능 설명 작성은 짧게.
-	 -테이블은 소괄호를 사용해 적되, 조인하는 테이블을 INQUIRY 뒤에 표기함
+	 주석 표기방법 
+	 -MAPPER에서의 ID가 메소드명과 동일하지 않은 경우만 표기한다. 
+	 -사용하는 SIUD 명칭을 가장 앞에 위치. 
+	 -기능 설명 작성은 짧게. 
+	 -테이블은 소괄호를 사용해 적되, 조인하는 테이블을 INQUIRY 뒤에 표기함 
 	 -그 외 설명은 다른 줄로 새롭게 작성
 	 */
 

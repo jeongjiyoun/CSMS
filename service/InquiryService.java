@@ -41,7 +41,6 @@ public class InquiryService {
 		return result;
 	}
 
-	//메시지 읽음 표시
 	public void readingInquiry(Inquiry inq) {
 		idao.readingInquiry(inq);
 	}
