@@ -18,6 +18,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import csms.manager.PopupManager;
+import csms.manager.TableManager;
+import csms.service.InquiryService;
 import csms.util.RoundedButton;
 import csms.view.HomeView;
 import csms.vo.Inquiry;
@@ -42,7 +44,7 @@ public class Tab7 extends JPanel {
 
 	private PopupManager pm = new PopupManager();
 	private TableManager tm = new TableManager();
-//	private InquiryService is = new InquiryService();
+	private InquiryService is = new InquiryService();
 	private String userId;
 
 	public Tab7(HomeView homeview, String userId) {
@@ -180,7 +182,7 @@ public class Tab7 extends JPanel {
 						List<Inquiry> list = tm.getMyIlist2();
 						inq = list.get(i);
 						pm.openMessage(userId, inq, 2);
-//						is.readingInquiry(inq);
+						is.readingInquiry(inq);
 					}
 				} catch (ArrayIndexOutOfBoundsException e2) {
 					// 어떠한 메시지도 선택하지 않은 채 열라고 하는 행위

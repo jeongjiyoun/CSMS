@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
 import csms.manager.PopupManager;
 import csms.manager.StringMaker;
+import csms.manager.TableManager;
 import csms.service.CategoryService;
 import csms.service.CompanyService;
 import csms.service.DealingCService;
