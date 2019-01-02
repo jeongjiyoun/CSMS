@@ -20,7 +20,7 @@ public class Company {
 
 	public Company(String cid, String cpw, String creginum, String ctel, String cname, String caddress, String ccomment,
 			int ctype) {
-		super();
+		//구성요소가 모두 있는 생성자.
 		this.cid = cid;
 		this.cpw = cpw;
 		this.creginum = creginum;
@@ -32,7 +32,6 @@ public class Company {
 	}
 
 	public Company(String cid, String cpw, String creginum) {
-		super();
 		this.cid = cid;
 		this.cpw = cpw;
 		this.creginum = creginum;
