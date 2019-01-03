@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -14,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import csms.manager.PopupManager;
+import csms.manager.TableManager;
 import csms.service.CompanyService;
 import csms.service.SharingService;
 import csms.util.RoundedButton;
@@ -24,7 +26,6 @@ public class Tab3AdS extends JFrame {
 	private static final long serialVersionUID = -7512622558196639238L;
 	private JPanel contentPane;
 	private JLabel label_1;
-	private JTextField txtSTo;
 	private JLabel label_2;
 	private JTextField txtComment;
 	private JLabel label_3;
@@ -35,6 +36,7 @@ public class Tab3AdS extends JFrame {
 	private JLabel label_4;
 	private JTextField txtPrice;
 	private RoundedButton btnNewButton;
+	private JList<String> list;
 	private SharingService ss = new SharingService();
 	private CompanyService cs = new CompanyService();
 	private PopupManager pm = new PopupManager();
@@ -77,10 +79,18 @@ public class Tab3AdS extends JFrame {
 	}
 
 	private void startJtext() {
+		defaultValue();
 		contentPane.add(txtComment);
 		contentPane.add(txtPrice);
 		contentPane.add(txtGid);
 		contentPane.add(txtName);
+		contentPane.add(list);
+	}
+
+	private void defaultValue() {
+		TableManager tablemanager = new TableManager();
+		tablemanager.getMyIlist1();
+//		list.
 	}
 
 	private void startFrame() {
@@ -106,10 +116,10 @@ public class Tab3AdS extends JFrame {
 					txtPrice.setText("");
 				} else if (txtName.getText().length() < 1) {
 					pm.nulName();
-				} else if (txtSTo.getText().equals(userId)) {
+				} else if (list.getName().equals(userId)) {
 					// 자기에게 공유를 하면
 					pm.notGdub();
-				} else if (!cs.idCheck(txtSTo.getText())) {
+				} else if (!cs.idCheck(list.getName())) {
 					// 없는 아이디면
 					pm.noIdfind();
 				} else {
@@ -118,7 +128,7 @@ public class Tab3AdS extends JFrame {
 						goods1.setgCID(txtGid.getText());
 						goods1.setgName(txtName.getText());
 						goods1.setsCfrom(userId);
-						goods1.setsCto(txtSTo.getText());
+						goods1.setsCto(list.getName());
 						goods1.setgPrice(Integer.parseInt(txtPrice.getText()));
 						goods1.setgCaption(txtComment.getText());
 						goods1.setgStock(goods.getgStock());
@@ -141,13 +151,6 @@ public class Tab3AdS extends JFrame {
 		label_1.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label_1.setBounds(32, 180, 56, 28);
 		contentPane.add(label_1);
-
-		txtSTo = new JTextField();
-		txtSTo.setHorizontalAlignment(SwingConstants.LEFT);
-		txtSTo.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
-		txtSTo.setColumns(10);
-		txtSTo.setBounds(119, 176, 145, 30);
-		contentPane.add(txtSTo);
 
 		label_2 = new JLabel("한줄소개");
 		label_2.setFont(new Font("Dialog", Font.PLAIN, 15));
@@ -190,6 +193,9 @@ public class Tab3AdS extends JFrame {
 		txtGid.setColumns(10);
 		txtGid.setBounds(119, 134, 145, 30);
 
+		list = new JList<String>();
+		list.setBounds(119, 180, 145, 28);
+
 		label_4 = new JLabel("가격");
 		label_4.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label_4.setBounds(32, 220, 56, 28);
@@ -206,5 +212,4 @@ public class Tab3AdS extends JFrame {
 		btnNewButton.setBounds(154, 320, 165, 36);
 		contentPane.add(btnNewButton);
 	}
-
 }

@@ -1,4 +1,4 @@
-package csms.view.homeview;
+package csms.manager;
 
 import java.util.ArrayList;
 import java.util.List;
