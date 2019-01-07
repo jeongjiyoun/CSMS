@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -36,12 +38,15 @@ public class Tab3AdS extends JFrame {
 	private JLabel label_4;
 	private JTextField txtPrice;
 	private RoundedButton btnNewButton;
-	private JList<String> list;
+	private JList<String> Jlist;
+
+	private TableManager tm = new TableManager();
 	private SharingService ss = new SharingService();
 	private CompanyService cs = new CompanyService();
 	private PopupManager pm = new PopupManager();
 	private String userId;
 	private Goods goods;
+
 
 	public Tab3AdS(String userId, Goods goods) {
 		this.userId = userId;
@@ -52,9 +57,6 @@ public class Tab3AdS extends JFrame {
 		startActionListener();
 	}
 
-	/**
-	 * @wbp.parser.constructor
-	 */
 	public Tab3AdS(String userId) {
 		this.userId = userId;
 		startFrame();
@@ -66,6 +68,13 @@ public class Tab3AdS extends JFrame {
 	}
 
 	private void startDefaultValue() {
+
+		List<String> list = tm.sharingCompanyList(userId);
+		DefaultListModel<String> dl = new DefaultListModel<String>();
+		for (String name : list) {
+			dl.addElement(name);
+		}
+
 		String gid = goods.getGid();
 		String price = Integer.toString(goods.getgPrice());
 		String name = goods.getgName();
@@ -79,19 +88,13 @@ public class Tab3AdS extends JFrame {
 	}
 
 	private void startJtext() {
-		defaultValue();
 		contentPane.add(txtComment);
 		contentPane.add(txtPrice);
 		contentPane.add(txtGid);
 		contentPane.add(txtName);
-		contentPane.add(list);
+		contentPane.add(Jlist);
 	}
 
-	private void defaultValue() {
-		TableManager tablemanager = new TableManager();
-		tablemanager.getMyIlist1();
-//		list.
-	}
 
 	private void startFrame() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -116,10 +119,10 @@ public class Tab3AdS extends JFrame {
 					txtPrice.setText("");
 				} else if (txtName.getText().length() < 1) {
 					pm.nulName();
-				} else if (list.getName().equals(userId)) {
+				} else if (Jlist.getName().equals(userId)) {
 					// 자기에게 공유를 하면
 					pm.notGdub();
-				} else if (!cs.idCheck(list.getName())) {
+				} else if (!cs.idCheck(Jlist.getName())) {
 					// 없는 아이디면
 					pm.noIdfind();
 				} else {
@@ -128,7 +131,7 @@ public class Tab3AdS extends JFrame {
 						goods1.setgCID(txtGid.getText());
 						goods1.setgName(txtName.getText());
 						goods1.setsCfrom(userId);
-						goods1.setsCto(list.getName());
+						goods1.setsCto(Jlist.getName());
 						goods1.setgPrice(Integer.parseInt(txtPrice.getText()));
 						goods1.setgCaption(txtComment.getText());
 						goods1.setgStock(goods.getgStock());
@@ -193,8 +196,8 @@ public class Tab3AdS extends JFrame {
 		txtGid.setColumns(10);
 		txtGid.setBounds(119, 134, 145, 30);
 
-		list = new JList<String>();
-		list.setBounds(119, 180, 145, 28);
+		Jlist = new JList<String>();
+		Jlist.setBounds(119, 180, 145, 28);
 
 		label_4 = new JLabel("가격");
 		label_4.setFont(new Font("Dialog", Font.PLAIN, 15));

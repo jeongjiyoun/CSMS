@@ -30,6 +30,16 @@ public class TableManager {
 	private List<Inquiry> myIlistR = null;
 	private List<Inquiry> myIlistS = null;
 	private List<DealingCompany> list = null;
+	private List<String> sCList = null;
+
+	public List<String> sharingCompanyList(String userId){
+		List<DealingCompany> list = ds.getDealing(userId);
+		for (DealingCompany dealingCompany : list) {
+			sCList.add(dealingCompany.getDcidTo());
+		}
+		return sCList;
+	}
+
 
 	public DefaultTableModel getMyGoods(DefaultTableModel dmodel, String userId) {
 		for (int i = 0; i < dmodel.getRowCount();) {
