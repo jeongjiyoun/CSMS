@@ -6,9 +6,11 @@ public class DealingCompany {
 	int dnum;
 
 	public DealingCompany() {
+		super();
 	}
 
 	public DealingCompany(String dcidFrom, String dcidTo, int dnum) {
+		super();
 		this.dcidFrom = dcidFrom;
 		this.dcidTo = dcidTo;
 		this.dnum = dnum;

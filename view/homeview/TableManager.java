@@ -1,4 +1,4 @@
-package csms.manager;
+package csms.view.homeview;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,16 @@ public class TableManager {
 	private List<Inquiry> myIlistR = null;
 	private List<Inquiry> myIlistS = null;
 	private List<DealingCompany> list = null;
+	private List<String> sCList = null;
+
+	public List<String> sharingCompanyList(String userId){
+		List<DealingCompany> list = ds.getDealing(userId);
+		for (DealingCompany dealingCompany : list) {
+			sCList.add(dealingCompany.getDcidTo());
+		}
+		return sCList;
+	}
+
 
 	public DefaultTableModel getMyGoods(DefaultTableModel dmodel, String userId) {
 		for (int i = 0; i < dmodel.getRowCount();) {
@@ -323,16 +333,6 @@ public class TableManager {
 			dmodel.addRow(row); // 한줄씩 데이터 추가
 		}
 		return dmodel;
-	}
-
-	@SuppressWarnings("null")
-	public List<String> sharingCompanyList(String userId) {
-		List<String> result = null;
-		List<DealingCompany> list = ds.getDealing(userId);
-			for (DealingCompany com : list) {
-				result.add(com.getDcidTo());
-		}
-		return result;
 	}
 
 }

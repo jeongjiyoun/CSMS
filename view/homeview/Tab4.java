@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -21,8 +22,6 @@ import csms.service.CompanyService;
 import csms.service.DealingCService;
 import csms.util.RoundedButton;
 import csms.view.HomeView;
-
-import javax.swing.JTabbedPane;
 
 public class Tab4 extends JPanel {
 	private static final long serialVersionUID = 5631121597437548135L;

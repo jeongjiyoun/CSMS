@@ -28,6 +28,7 @@ public class Tab3AdS extends JFrame {
 	private static final long serialVersionUID = -7512622558196639238L;
 	private JPanel contentPane;
 	private JLabel label_1;
+	private JTextField txtSTo;
 	private JLabel label_2;
 	private JTextField txtComment;
 	private JLabel label_3;
@@ -39,8 +40,8 @@ public class Tab3AdS extends JFrame {
 	private JTextField txtPrice;
 	private RoundedButton btnNewButton;
 	private JList<String> Jlist;
-
 	private TableManager tm = new TableManager();
+
 	private SharingService ss = new SharingService();
 	private CompanyService cs = new CompanyService();
 	private PopupManager pm = new PopupManager();
@@ -92,9 +93,7 @@ public class Tab3AdS extends JFrame {
 		contentPane.add(txtPrice);
 		contentPane.add(txtGid);
 		contentPane.add(txtName);
-		contentPane.add(Jlist);
 	}
-
 
 	private void startFrame() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -125,13 +124,17 @@ public class Tab3AdS extends JFrame {
 				} else if (!cs.idCheck(Jlist.getName())) {
 					// 없는 아이디면
 					pm.noIdfind();
-				} else {
+				} else if (txtSTo.getText().equals(userId)) {
+					// 자기에게 공유를 하면
+					pm.notGdub();
+				}  else {
 					try {
 						SharingGoods goods1 = new SharingGoods();
 						goods1.setgCID(txtGid.getText());
 						goods1.setgName(txtName.getText());
 						goods1.setsCfrom(userId);
 						goods1.setsCto(Jlist.getName());
+						goods1.setsCto(txtSTo.getText());
 						goods1.setgPrice(Integer.parseInt(txtPrice.getText()));
 						goods1.setgCaption(txtComment.getText());
 						goods1.setgStock(goods.getgStock());
@@ -154,6 +157,13 @@ public class Tab3AdS extends JFrame {
 		label_1.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label_1.setBounds(32, 180, 56, 28);
 		contentPane.add(label_1);
+
+		txtSTo = new JTextField();
+		txtSTo.setHorizontalAlignment(SwingConstants.LEFT);
+		txtSTo.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		txtSTo.setColumns(10);
+		txtSTo.setBounds(119, 176, 145, 30);
+		contentPane.add(txtSTo);
 
 		label_2 = new JLabel("한줄소개");
 		label_2.setFont(new Font("Dialog", Font.PLAIN, 15));
@@ -215,4 +225,5 @@ public class Tab3AdS extends JFrame {
 		btnNewButton.setBounds(154, 320, 165, 36);
 		contentPane.add(btnNewButton);
 	}
+
 }
