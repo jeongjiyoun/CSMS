@@ -52,16 +52,15 @@ public class Tab3AdS extends JFrame {
 	public Tab3AdS(String userId, Goods goods) {
 		this.userId = userId;
 		this.goods = goods;
-		startFrame();
-		content();
+		startFrameContents();
+		companyList();
 		startDefaultValue();
 		startActionListener();
 	}
 
 	public Tab3AdS(String userId) {
 		this.userId = userId;
-		startFrame();
-		content();
+		startFrameContents();
 		startActionListener();
 		txtGid.setEditable(true);
 		txtName.setEditable(true);
@@ -69,12 +68,6 @@ public class Tab3AdS extends JFrame {
 	}
 
 	private void startDefaultValue() {
-
-		List<String> list = tm.sharingCompanyList(userId);
-		DefaultListModel<String> dl = new DefaultListModel<String>();
-		for (String name : list) {
-			dl.addElement(name);
-		}
 
 		String gid = goods.getGid();
 		String price = Integer.toString(goods.getgPrice());
@@ -88,21 +81,23 @@ public class Tab3AdS extends JFrame {
 		startJtext();
 	}
 
+	private void companyList() {
+		List<String> list = tm.sharingCompanyList(userId);
+		DefaultListModel<String> dl = new DefaultListModel<String>();
+		for (String name : list) {
+			dl.addElement(name);
+		}
+
+		Jlist = new JList<>(dl);
+		contentPane.add(Jlist);
+	}
+
 	private void startJtext() {
+
 		contentPane.add(txtComment);
 		contentPane.add(txtPrice);
 		contentPane.add(txtGid);
 		contentPane.add(txtName);
-	}
-
-	private void startFrame() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 492, 413);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 	}
 
 	private void startActionListener() {
@@ -152,7 +147,15 @@ public class Tab3AdS extends JFrame {
 		});
 	}
 
-	private void content() {
+	private void startFrameContents() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 492, 413);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
 		label_1 = new JLabel("회사명");
 		label_1.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label_1.setBounds(32, 180, 56, 28);

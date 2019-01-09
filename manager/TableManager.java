@@ -325,9 +325,8 @@ public class TableManager {
 		return dmodel;
 	}
 
-	@SuppressWarnings("null")
 	public List<String> sharingCompanyList(String userId) {
-		List<String> result = null;
+		List<String> result = new ArrayList<String>();
 		List<DealingCompany> list = ds.getDealing(userId);
 			for (DealingCompany com : list) {
 				result.add(com.getDcidTo());
